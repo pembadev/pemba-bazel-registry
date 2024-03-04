@@ -1,0 +1,13 @@
+{
+    "homepage": "https://linter.aip.dev/",
+    "maintainers": [
+        {
+            "github": "noahdietz",
+            "name": "Noah Dietz"
+        }
+    ],
+    "versions": [
+        "1.63.6",
+    ],
+    "yanked_versions": {}
+}

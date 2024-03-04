@@ -1,0 +1,29 @@
+diff --git a/rules/aip0157/BUILD.bazel b/rules/aip0157/BUILD.bazel
+new file mode 100644
+index 0000000..9d4bbd2
+--- /dev/null
++++ b/rules/aip0157/BUILD.bazel
+@@ -0,0 +1,23 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0157",
++    srcs = [
++        "aip0157.go",
++        "request_read_mask_field.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0157",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++    ],
++)
++
++go_test(
++    name = "aip0157_test",
++    srcs = ["request_read_mask_field_test.go"],
++    embed = [":aip0157"],
++    deps = ["//rules/internal/testutils"],
++)

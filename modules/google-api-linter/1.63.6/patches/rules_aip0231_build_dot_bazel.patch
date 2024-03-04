@@ -1,0 +1,65 @@
+diff --git a/rules/aip0231/BUILD.bazel b/rules/aip0231/BUILD.bazel
+new file mode 100644
+index 0000000..c0dbc6c
+--- /dev/null
++++ b/rules/aip0231/BUILD.bazel
+@@ -0,0 +1,59 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0231",
++    srcs = [
++        "aip0231.go",
++        "http_body.go",
++        "http_method.go",
++        "http_uri_suffix.go",
++        "plural_method_name.go",
++        "request_message_name.go",
++        "request_names_behavior.go",
++        "request_names_field.go",
++        "request_names_reference.go",
++        "request_parent_field.go",
++        "request_parent_reference.go",
++        "request_unknown_fields.go",
++        "response_message_name.go",
++        "response_resource_field.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0231",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_gertd_go_pluralize//:go-pluralize",
++        "@com_github_jhump_protoreflect//desc",
++        "@com_github_jhump_protoreflect//desc/builder",
++        "@com_github_stoewer_go_strcase//:go-strcase",
++        "@org_bitbucket_creachadair_stringset//:stringset",
++    ],
++)
++
++go_test(
++    name = "aip0231_test",
++    srcs = [
++        "aip0231_test.go",
++        "http_body_test.go",
++        "http_method_test.go",
++        "http_uri_suffix_test.go",
++        "plural_method_name_test.go",
++        "request_message_name_test.go",
++        "request_names_behavior_test.go",
++        "request_names_field_test.go",
++        "request_names_reference_test.go",
++        "request_parent_field_test.go",
++        "request_parent_reference_test.go",
++        "request_unknown_fields_test.go",
++        "response_message_name_test.go",
++        "response_resource_field_test.go",
++    ],
++    embed = [":aip0231"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++        "@com_github_jhump_protoreflect//desc",
++    ],
++)

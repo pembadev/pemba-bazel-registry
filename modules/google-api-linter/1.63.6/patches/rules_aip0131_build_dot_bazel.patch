@@ -1,0 +1,66 @@
+diff --git a/rules/aip0131/BUILD.bazel b/rules/aip0131/BUILD.bazel
+new file mode 100644
+index 0000000..943a793
+--- /dev/null
++++ b/rules/aip0131/BUILD.bazel
+@@ -0,0 +1,60 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0131",
++    srcs = [
++        "aip0131.go",
++        "http_body.go",
++        "http_method.go",
++        "http_uri_name.go",
++        "method_signature.go",
++        "request_message_name.go",
++        "request_name_behavior.go",
++        "request_name_field.go",
++        "request_name_reference.go",
++        "request_name_reference_type.go",
++        "request_name_required.go",
++        "request_required_fields.go",
++        "request_unknown_fields.go",
++        "response_message_name.go",
++        "synonyms.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0131",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++        "@org_bitbucket_creachadair_stringset//:stringset",
++    ],
++)
++
++go_test(
++    name = "aip0131_test",
++    srcs = [
++        "aip0131_test.go",
++        "http_body_test.go",
++        "http_method_test.go",
++        "http_uri_name_test.go",
++        "method_signature_test.go",
++        "request_message_name_test.go",
++        "request_name_behavior_test.go",
++        "request_name_field_test.go",
++        "request_name_reference_test.go",
++        "request_name_reference_type_test.go",
++        "request_name_required_test.go",
++        "request_required_fields_test.go",
++        "request_unknown_fields_test.go",
++        "response_message_name_test.go",
++        "synonyms_test.go",
++    ],
++    embed = [":aip0131"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++        "@com_github_jhump_protoreflect//desc",
++        "@com_github_jhump_protoreflect//desc/builder",
++        "@org_golang_google_genproto//protobuf/field_mask",
++    ],
++)

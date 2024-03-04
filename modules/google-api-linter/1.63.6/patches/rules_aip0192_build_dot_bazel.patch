@@ -1,0 +1,50 @@
+diff --git a/rules/aip0192/BUILD.bazel b/rules/aip0192/BUILD.bazel
+new file mode 100644
+index 0000000..dbabf20
+--- /dev/null
++++ b/rules/aip0192/BUILD.bazel
+@@ -0,0 +1,44 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0192",
++    srcs = [
++        "absolute_links.go",
++        "aip0192.go",
++        "deprecated_comment.go",
++        "has_comments.go",
++        "no_html.go",
++        "no_markdown_headings.go",
++        "no_markdown_tables.go",
++        "only_leading_comments.go",
++        "trademarked_names.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0192",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++    ],
++)
++
++go_test(
++    name = "aip0192_test",
++    srcs = [
++        "absolute_links_test.go",
++        "aip0192_test.go",
++        "deprecated_test.go",
++        "has_comments_test.go",
++        "no_html_test.go",
++        "no_markdown_headings_test.go",
++        "no_markdown_tables_test.go",
++        "only_leading_comments_test.go",
++        "trademarked_names_test.go",
++    ],
++    embed = [":aip0192"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++    ],
++)

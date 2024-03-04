@@ -1,0 +1,69 @@
+diff --git a/rules/BUILD.bazel b/rules/BUILD.bazel
+new file mode 100644
+index 0000000..04459e9
+--- /dev/null
++++ b/rules/BUILD.bazel
+@@ -0,0 +1,63 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "rules",
++    srcs = ["rules.go"],
++    importpath = "github.com/googleapis/api-linter/rules",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//rules/aip0121",
++        "//rules/aip0122",
++        "//rules/aip0123",
++        "//rules/aip0124",
++        "//rules/aip0126",
++        "//rules/aip0127",
++        "//rules/aip0128",
++        "//rules/aip0131",
++        "//rules/aip0132",
++        "//rules/aip0133",
++        "//rules/aip0134",
++        "//rules/aip0135",
++        "//rules/aip0136",
++        "//rules/aip0140",
++        "//rules/aip0141",
++        "//rules/aip0142",
++        "//rules/aip0143",
++        "//rules/aip0144",
++        "//rules/aip0146",
++        "//rules/aip0148",
++        "//rules/aip0151",
++        "//rules/aip0152",
++        "//rules/aip0154",
++        "//rules/aip0155",
++        "//rules/aip0156",
++        "//rules/aip0157",
++        "//rules/aip0158",
++        "//rules/aip0159",
++        "//rules/aip0162",
++        "//rules/aip0163",
++        "//rules/aip0164",
++        "//rules/aip0165",
++        "//rules/aip0191",
++        "//rules/aip0192",
++        "//rules/aip0202",
++        "//rules/aip0203",
++        "//rules/aip0214",
++        "//rules/aip0215",
++        "//rules/aip0216",
++        "//rules/aip0217",
++        "//rules/aip0231",
++        "//rules/aip0233",
++        "//rules/aip0234",
++        "//rules/aip0235",
++        "//rules/aip4232",
++    ],
++)
++
++go_test(
++    name = "rules_test",
++    srcs = ["rules_test.go"],
++    embed = [":rules"],
++    deps = ["//lint"],
++)

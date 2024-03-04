@@ -1,0 +1,54 @@
+diff --git a/rules/aip0136/BUILD.bazel b/rules/aip0136/BUILD.bazel
+new file mode 100644
+index 0000000..bcb72e2
+--- /dev/null
++++ b/rules/aip0136/BUILD.bazel
+@@ -0,0 +1,48 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0136",
++    srcs = [
++        "aip0136.go",
++        "declarative_standard_methods_only.go",
++        "http_body.go",
++        "http_method.go",
++        "http_name_variable.go",
++        "http_parent_variable.go",
++        "http_uri_suffix.go",
++        "prepositions.go",
++        "verb_noun.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0136",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/data",
++        "//rules/internal/utils",
++        "@com_github_gertd_go_pluralize//:go-pluralize",
++        "@com_github_jhump_protoreflect//desc",
++        "@com_github_stoewer_go_strcase//:go-strcase",
++        "@org_bitbucket_creachadair_stringset//:stringset",
++    ],
++)
++
++go_test(
++    name = "aip0136_test",
++    srcs = [
++        "aip0136_test.go",
++        "declarative_standard_methods_only_test.go",
++        "http_body_test.go",
++        "http_method_test.go",
++        "http_name_variable_test.go",
++        "http_parent_variable_test.go",
++        "http_uri_suffix_test.go",
++        "prepositions_test.go",
++        "verb_noun_test.go",
++    ],
++    embed = [":aip0136"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++    ],
++)

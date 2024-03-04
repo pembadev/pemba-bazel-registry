@@ -1,0 +1,36 @@
+diff --git a/rules/aip0146/BUILD.bazel b/rules/aip0146/BUILD.bazel
+new file mode 100644
+index 0000000..417ff07
+--- /dev/null
++++ b/rules/aip0146/BUILD.bazel
+@@ -0,0 +1,30 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0146",
++    srcs = [
++        "aip0146.go",
++        "any.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0146",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++    ],
++)
++
++go_test(
++    name = "aip0146_test",
++    srcs = [
++        "aip0146_test.go",
++        "any_test.go",
++    ],
++    embed = [":aip0146"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++    ],
++)

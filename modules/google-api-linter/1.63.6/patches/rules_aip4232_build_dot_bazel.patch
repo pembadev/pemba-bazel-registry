@@ -1,0 +1,39 @@
+diff --git a/rules/aip4232/BUILD.bazel b/rules/aip4232/BUILD.bazel
+new file mode 100644
+index 0000000..e8b3274
+--- /dev/null
++++ b/rules/aip4232/BUILD.bazel
+@@ -0,0 +1,33 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip4232",
++    srcs = [
++        "aip4232.go",
++        "repeated_fields.go",
++        "required_fields.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip4232",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++        "@org_bitbucket_creachadair_stringset//:stringset",
++    ],
++)
++
++go_test(
++    name = "aip4232_test",
++    srcs = [
++        "aip4232_test.go",
++        "repeated_fields_test.go",
++        "required_fields_test.go",
++    ],
++    embed = [":aip4232"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++    ],
++)

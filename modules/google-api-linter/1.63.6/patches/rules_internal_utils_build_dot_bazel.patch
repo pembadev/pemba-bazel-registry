@@ -1,0 +1,72 @@
+diff --git a/rules/internal/utils/BUILD.bazel b/rules/internal/utils/BUILD.bazel
+new file mode 100644
+index 0000000..a898580
+--- /dev/null
++++ b/rules/internal/utils/BUILD.bazel
+@@ -0,0 +1,63 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "utils",
++    srcs = [
++        "casing.go",
++        "comments.go",
++        "common_lints.go",
++        "common_proto.go",
++        "declarative_friendly.go",
++        "extension.go",
++        "find.go",
++        "http.go",
++        "message.go",
++        "method.go",
++        "resource.go",
++        "string_pluralize.go",
++        "type_name.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/internal/utils",
++    visibility = ["//rules:__subpackages__"],
++    deps = [
++        "//lint",
++        "//locations",
++        "@com_github_gertd_go_pluralize//:go-pluralize",
++        "@com_github_jhump_protoreflect//desc",
++        "@com_github_jhump_protoreflect//desc/builder",
++        "@com_github_stoewer_go_strcase//:go-strcase",
++        "@com_google_cloud_go_longrunning//autogen/longrunningpb",
++        "@org_bitbucket_creachadair_stringset//:stringset",
++        "@org_golang_google_genproto_googleapis_api//annotations",
++        "@org_golang_google_protobuf//proto",
++        "@org_golang_google_protobuf//types/descriptorpb",
++    ],
++)
++
++go_test(
++    name = "utils_test",
++    srcs = [
++        "casing_test.go",
++        "comments_test.go",
++        "common_lints_test.go",
++        "common_proto_test.go",
++        "declarative_friendly_test.go",
++        "extension_test.go",
++        "find_test.go",
++        "http_test.go",
++        "message_test.go",
++        "method_test.go",
++        "resource_test.go",
++        "string_pluralize_test.go",
++        "type_name_test.go",
++    ],
++    embed = [":utils"],
++    deps = [
++        "//rules/internal/testutils",
++        "@com_github_google_go_cmp//cmp",
++        "@com_github_jhump_protoreflect//desc/builder",
++        "@org_bitbucket_creachadair_stringset//:stringset",
++        "@org_golang_google_genproto_googleapis_api//annotations",
++        "@org_golang_google_protobuf//proto",
++    ],
++)
+-- 
+2.40.1
+

@@ -1,0 +1,53 @@
+diff --git a/rules/aip0152/BUILD.bazel b/rules/aip0152/BUILD.bazel
+new file mode 100644
+index 0000000..b1dad11
+--- /dev/null
++++ b/rules/aip0152/BUILD.bazel
+@@ -0,0 +1,47 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0152",
++    srcs = [
++        "aip0152.go",
++        "http_body.go",
++        "http_method.go",
++        "http_uri_suffix.go",
++        "request_message_name.go",
++        "request_name_behavior.go",
++        "request_name_field.go",
++        "request_name_reference.go",
++        "request_resource_suffix.go",
++        "response_message_name.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0152",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++    ],
++)
++
++go_test(
++    name = "aip0152_test",
++    srcs = [
++        "aip0152_test.go",
++        "http_body_test.go",
++        "http_method_test.go",
++        "http_uri_suffix_test.go",
++        "request_message_name_test.go",
++        "request_name_behavior_test.go",
++        "request_name_field_test.go",
++        "request_name_reference_test.go",
++        "request_resource_suffix_test.go",
++        "response_message_name_test.go",
++    ],
++    embed = [":aip0152"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++        "@com_github_jhump_protoreflect//desc",
++    ],
++)

@@ -1,0 +1,14 @@
+diff --git a/internal/BUILD.bazel b/internal/BUILD.bazel
+new file mode 100644
+index 0000000..b252ae0
+--- /dev/null
++++ b/internal/BUILD.bazel
+@@ -0,0 +1,8 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library")
++
++go_library(
++    name = "internal",
++    srcs = ["version.go"],
++    importpath = "github.com/googleapis/api-linter/internal",
++    visibility = ["//:__subpackages__"],
++)

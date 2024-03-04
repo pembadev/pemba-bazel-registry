@@ -1,0 +1,15 @@
+diff --git a/BUILD.bazel b/BUILD.bazel
+new file mode 100644
+index 0000000..f1492aa
+--- /dev/null
++++ b/BUILD.bazel
+@@ -0,0 +1,9 @@
++load(
++    "@bazel_gazelle//:def.bzl",
++    "gazelle",
++)
++
++# gazelle:prefix github.com/googleapis/api-linter
++gazelle(
++    name = "gazelle",
++)

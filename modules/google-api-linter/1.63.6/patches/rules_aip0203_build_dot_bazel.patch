@@ -1,0 +1,44 @@
+diff --git a/rules/aip0203/BUILD.bazel b/rules/aip0203/BUILD.bazel
+new file mode 100644
+index 0000000..7ab39a0
+--- /dev/null
++++ b/rules/aip0203/BUILD.bazel
+@@ -0,0 +1,38 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0203",
++    srcs = [
++        "aip0203.go",
++        "field_behavior_required.go",
++        "resource_identifier_only.go",
++        "resource_name_identifier.go",
++        "unordered_list_repeated.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0203",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++        "@org_bitbucket_creachadair_stringset//:stringset",
++        "@org_golang_google_genproto_googleapis_api//annotations",
++    ],
++)
++
++go_test(
++    name = "aip0203_test",
++    srcs = [
++        "aip0203_test.go",
++        "field_behavior_required_test.go",
++        "resource_identifier_only_test.go",
++        "resource_name_identifier_test.go",
++        "unordered_list_repeated_test.go",
++    ],
++    embed = [":aip0203"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++    ],
++)

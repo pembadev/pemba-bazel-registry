@@ -1,0 +1,42 @@
+diff --git a/rules/aip0128/BUILD.bazel b/rules/aip0128/BUILD.bazel
+new file mode 100644
+index 0000000..c719fe5
+--- /dev/null
++++ b/rules/aip0128/BUILD.bazel
+@@ -0,0 +1,36 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0128",
++    srcs = [
++        "aip0128.go",
++        "resource_annotations_field.go",
++        "resource_reconciling_behavior.go",
++        "resource_reconciling_field.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0128",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++        "@com_github_jhump_protoreflect//desc/builder",
++    ],
++)
++
++go_test(
++    name = "aip0128_test",
++    srcs = [
++        "aip0128_test.go",
++        "resource_annotations_field_test.go",
++        "resource_reconciling_behavior_test.go",
++        "resource_reconciling_field_test.go",
++    ],
++    embed = [":aip0128"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++        "@com_github_jhump_protoreflect//desc",
++    ],
++)

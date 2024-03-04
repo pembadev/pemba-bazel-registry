@@ -1,0 +1,38 @@
+diff --git a/rules/aip0214/BUILD.bazel b/rules/aip0214/BUILD.bazel
+new file mode 100644
+index 0000000..0a86a36
+--- /dev/null
++++ b/rules/aip0214/BUILD.bazel
+@@ -0,0 +1,32 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0214",
++    srcs = [
++        "aip0214.go",
++        "resource_expiry.go",
++        "ttl_type.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0214",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++    ],
++)
++
++go_test(
++    name = "aip0214_test",
++    srcs = [
++        "aip0214_test.go",
++        "resource_expiry_test.go",
++        "ttl_type_test.go",
++    ],
++    embed = [":aip0214"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++    ],
++)

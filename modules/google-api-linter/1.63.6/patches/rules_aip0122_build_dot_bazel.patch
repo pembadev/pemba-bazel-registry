@@ -1,0 +1,52 @@
+diff --git a/rules/aip0122/BUILD.bazel b/rules/aip0122/BUILD.bazel
+new file mode 100644
+index 0000000..8e9b030
+--- /dev/null
++++ b/rules/aip0122/BUILD.bazel
+@@ -0,0 +1,46 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0122",
++    srcs = [
++        "aip0122.go",
++        "camel_case_uris.go",
++        "embedded_resource.go",
++        "name_suffix.go",
++        "no_self_links.go",
++        "resource_collection_identifiers.go",
++        "resource_id_output_only.go",
++        "resource_reference_type.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0122",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++        "@com_github_stoewer_go_strcase//:go-strcase",
++        "@org_bitbucket_creachadair_stringset//:stringset",
++        "@org_golang_google_genproto_googleapis_api//annotations",
++        "@org_golang_google_protobuf//types/descriptorpb",
++    ],
++)
++
++go_test(
++    name = "aip0122_test",
++    srcs = [
++        "api0122_test.go",
++        "camel_case_uris_test.go",
++        "embedded_resource_test.go",
++        "name_suffix_test.go",
++        "no_self_links_test.go",
++        "resource_collection_identifiers_test.go",
++        "resource_id_output_only_test.go",
++        "resource_reference_type_test.go",
++    ],
++    embed = [":aip0122"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++    ],
++)

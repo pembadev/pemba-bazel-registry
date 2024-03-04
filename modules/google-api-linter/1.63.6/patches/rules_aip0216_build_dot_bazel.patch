@@ -1,0 +1,43 @@
+diff --git a/rules/aip0216/BUILD.bazel b/rules/aip0216/BUILD.bazel
+new file mode 100644
+index 0000000..dbb7fa6
+--- /dev/null
++++ b/rules/aip0216/BUILD.bazel
+@@ -0,0 +1,37 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0216",
++    srcs = [
++        "aip0216.go",
++        "nesting.go",
++        "state_field_output_only.go",
++        "synonyms.go",
++        "value_synonyms.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0216",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++        "@org_golang_google_genproto_googleapis_api//annotations",
++    ],
++)
++
++go_test(
++    name = "aip0216_test",
++    srcs = [
++        "aip0216_test.go",
++        "nesting_test.go",
++        "state_field_output_only_test.go",
++        "synonyms_test.go",
++        "value_synonyms_test.go",
++    ],
++    embed = [":aip0216"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++    ],
++)

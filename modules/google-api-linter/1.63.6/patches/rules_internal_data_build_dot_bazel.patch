@@ -1,0 +1,21 @@
+diff --git a/rules/internal/data/BUILD.bazel b/rules/internal/data/BUILD.bazel
+new file mode 100644
+index 0000000..24dae79
+--- /dev/null
++++ b/rules/internal/data/BUILD.bazel
+@@ -0,0 +1,15 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "data",
++    srcs = ["data.go"],
++    importpath = "github.com/googleapis/api-linter/rules/internal/data",
++    visibility = ["//rules:__subpackages__"],
++    deps = ["@org_bitbucket_creachadair_stringset//:stringset"],
++)
++
++go_test(
++    name = "data_test",
++    srcs = ["data_test.go"],
++    embed = [":data"],
++)

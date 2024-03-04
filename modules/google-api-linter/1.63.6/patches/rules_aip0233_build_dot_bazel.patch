@@ -1,0 +1,64 @@
+diff --git a/rules/aip0233/BUILD.bazel b/rules/aip0233/BUILD.bazel
+new file mode 100644
+index 0000000..af0ebfc
+--- /dev/null
++++ b/rules/aip0233/BUILD.bazel
+@@ -0,0 +1,58 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0233",
++    srcs = [
++        "aip0233.go",
++        "http_body.go",
++        "http_method.go",
++        "http_uri_suffix.go",
++        "plural_method_name.go",
++        "request_message_name.go",
++        "request_parent_field.go",
++        "request_parent_reference.go",
++        "request_requests_behavior.go",
++        "request_requests_field.go",
++        "request_unknown_fields.go",
++        "resource_reference_type.go",
++        "response_message_name.go",
++        "response_resource_field.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0233",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_gertd_go_pluralize//:go-pluralize",
++        "@com_github_jhump_protoreflect//desc",
++        "@com_github_stoewer_go_strcase//:go-strcase",
++        "@org_bitbucket_creachadair_stringset//:stringset",
++    ],
++)
++
++go_test(
++    name = "aip0233_test",
++    srcs = [
++        "aip0233_test.go",
++        "http_body_test.go",
++        "http_method_test.go",
++        "http_uri_suffix_test.go",
++        "plural_method_name_test.go",
++        "request_message_name_test.go",
++        "request_parent_field_test.go",
++        "request_parent_reference_test.go",
++        "request_requests_behavior_test.go",
++        "request_requests_field_test.go",
++        "request_unknown_fields_test.go",
++        "resource_reference_type_test.go",
++        "response_message_name_test.go",
++        "response_resource_field_test.go",
++    ],
++    embed = [":aip0233"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++        "@com_github_jhump_protoreflect//desc",
++    ],
++)

@@ -1,0 +1,41 @@
+diff --git a/rules/aip0121/BUILD.bazel b/rules/aip0121/BUILD.bazel
+new file mode 100644
+index 0000000..c8eed12
+--- /dev/null
++++ b/rules/aip0121/BUILD.bazel
+@@ -0,0 +1,35 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0121",
++    srcs = [
++        "aip0121.go",
++        "no_mutable_cycles.go",
++        "resource_must_support_get.go",
++        "resource_must_support_list.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0121",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++        "@org_bitbucket_creachadair_stringset//:stringset",
++    ],
++)
++
++go_test(
++    name = "aip0121_test",
++    srcs = [
++        "aip0121_test.go",
++        "no_mutable_cycles_test.go",
++        "resource_must_support_get_test.go",
++        "resource_must_support_list_test.go",
++    ],
++    embed = [":aip0121"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++    ],
++)

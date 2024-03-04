@@ -1,0 +1,58 @@
+diff --git a/rules/aip0140/BUILD.bazel b/rules/aip0140/BUILD.bazel
+new file mode 100644
+index 0000000..f284002
+--- /dev/null
++++ b/rules/aip0140/BUILD.bazel
+@@ -0,0 +1,52 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0140",
++    srcs = [
++        "abbreviations.go",
++        "aip0140.go",
++        "base64.go",
++        "lower_snake.go",
++        "numbers.go",
++        "prepositions.go",
++        "reserved_words.go",
++        "underscores.go",
++        "uri.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0140",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/data",
++        "@com_github_jhump_protoreflect//desc",
++        "@com_github_jhump_protoreflect//desc/builder",
++        "@com_github_stoewer_go_strcase//:go-strcase",
++        "@org_bitbucket_creachadair_stringset//:stringset",
++        "@org_golang_x_text//cases",
++        "@org_golang_x_text//language",
++    ],
++)
++
++go_test(
++    name = "aip0140_test",
++    srcs = [
++        "abbreviations_test.go",
++        "aip0140_test.go",
++        "base64_test.go",
++        "lower_snake_test.go",
++        "numbers_test.go",
++        "prepositions_test.go",
++        "reserved_words_test.go",
++        "underscores_test.go",
++        "uri_test.go",
++    ],
++    embed = [":aip0140"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++        "@com_github_jhump_protoreflect//desc",
++        "@com_github_jhump_protoreflect//desc/builder",
++        "@com_github_stoewer_go_strcase//:go-strcase",
++    ],
++)

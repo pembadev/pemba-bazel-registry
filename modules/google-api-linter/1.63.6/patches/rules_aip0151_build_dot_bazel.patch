@@ -1,0 +1,46 @@
+diff --git a/rules/aip0151/BUILD.bazel b/rules/aip0151/BUILD.bazel
+new file mode 100644
+index 0000000..ab56bc5
+--- /dev/null
++++ b/rules/aip0151/BUILD.bazel
+@@ -0,0 +1,40 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0151",
++    srcs = [
++        "aip0151.go",
++        "lro_metadata_reachable.go",
++        "lro_metadata_type.go",
++        "lro_response_reachable.go",
++        "lro_response_type.go",
++        "operation_info.go",
++        "response_unary.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0151",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++    ],
++)
++
++go_test(
++    name = "aip0151_test",
++    srcs = [
++        "aip0151_test.go",
++        "lro_metadata_reachable_test.go",
++        "lro_metadata_type_test.go",
++        "lro_response_reachable_test.go",
++        "lro_response_type_test.go",
++        "operation_info_test.go",
++        "response_unary_test.go",
++    ],
++    embed = [":aip0151"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++    ],
++)

@@ -1,0 +1,64 @@
+diff --git a/rules/aip0191/BUILD.bazel b/rules/aip0191/BUILD.bazel
+new file mode 100644
+index 0000000..558916b
+--- /dev/null
++++ b/rules/aip0191/BUILD.bazel
+@@ -0,0 +1,58 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0191",
++    srcs = [
++        "aip0191.go",
++        "csharp_namespace.go",
++        "file_layout.go",
++        "file_option_consistency.go",
++        "filenames.go",
++        "java_multiple_files.go",
++        "java_outer_classname.go",
++        "java_package.go",
++        "php_namespace.go",
++        "proto_package.go",
++        "proto_version.go",
++        "ruby_package.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0191",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "@com_github_jhump_protoreflect//desc",
++        "@com_github_stoewer_go_strcase//:go-strcase",
++        "@org_golang_google_protobuf//types/descriptorpb",
++        "@org_golang_x_text//cases",
++        "@org_golang_x_text//language",
++    ],
++)
++
++go_test(
++    name = "aip0191_test",
++    srcs = [
++        "aip0191_test.go",
++        "csharp_namespace_test.go",
++        "file_layout_test.go",
++        "file_option_consistency_test.go",
++        "filenames_test.go",
++        "java_multiple_files_test.go",
++        "java_outer_classname_test.go",
++        "java_package_test.go",
++        "php_namespace_test.go",
++        "proto_package_test.go",
++        "proto_version_test.go",
++        "ruby_package_test.go",
++    ],
++    embed = [":aip0191"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++        "@com_github_jhump_protoreflect//desc",
++        "@com_github_jhump_protoreflect//desc/builder",
++        "@com_github_stoewer_go_strcase//:go-strcase",
++        "@org_golang_google_protobuf//proto",
++        "@org_golang_google_protobuf//types/descriptorpb",
++    ],
++)

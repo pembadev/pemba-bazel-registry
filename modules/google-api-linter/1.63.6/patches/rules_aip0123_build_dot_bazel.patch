@@ -1,0 +1,66 @@
+diff --git a/rules/aip0123/BUILD.bazel b/rules/aip0123/BUILD.bazel
+new file mode 100644
+index 0000000..5312a56
+--- /dev/null
++++ b/rules/aip0123/BUILD.bazel
+@@ -0,0 +1,60 @@
++load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
++
++go_library(
++    name = "aip0123",
++    srcs = [
++        "aip0123.go",
++        "duplicate_resource.go",
++        "name_never_optional.go",
++        "resource_annotation.go",
++        "resource_definition_pattern.go",
++        "resource_definition_type_name.go",
++        "resource_definition_variables.go",
++        "resource_name_components_alternate.go",
++        "resource_name_field.go",
++        "resource_pattern.go",
++        "resource_plural.go",
++        "resource_reference_type.go",
++        "resource_singular.go",
++        "resource_type_name.go",
++        "resource_variables.go",
++    ],
++    importpath = "github.com/googleapis/api-linter/rules/aip0123",
++    visibility = ["//visibility:public"],
++    deps = [
++        "//lint",
++        "//locations",
++        "//rules/internal/utils",
++        "@com_github_jhump_protoreflect//desc",
++        "@com_github_stoewer_go_strcase//:go-strcase",
++        "@org_golang_google_genproto_googleapis_api//annotations",
++        "@org_golang_google_protobuf//types/descriptorpb",
++    ],
++)
++
++go_test(
++    name = "aip0123_test",
++    srcs = [
++        "aip0123_test.go",
++        "duplicate_resource_test.go",
++        "name_never_optional_test.go",
++        "resource_annotation_test.go",
++        "resource_definition_pattern_test.go",
++        "resource_definition_type_name_test.go",
++        "resource_definition_variables_test.go",
++        "resource_name_components_alternate_test.go",
++        "resource_name_field_test.go",
++        "resource_pattern_test.go",
++        "resource_plural_test.go",
++        "resource_reference_type_test.go",
++        "resource_singular_test.go",
++        "resource_type_name_test.go",
++        "resource_variables_test.go",
++    ],
++    embed = [":aip0123"],
++    deps = [
++        "//lint",
++        "//rules/internal/testutils",
++        "@com_github_jhump_protoreflect//desc",
++    ],
++)
